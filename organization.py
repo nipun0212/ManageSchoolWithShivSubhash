@@ -24,8 +24,10 @@ EMAIL_SCOPE = endpoints.EMAIL_SCOPE
 API_EXPLORER_CLIENT_ID = endpoints.API_EXPLORER_CLIENT_ID
 @endpoints.api(name='schoolmanagement',
                 version='v1',
-                allowed_client_ids=[WEB_CLIENT_ID, API_EXPLORER_CLIENT_ID],
-                scopes=[EMAIL_SCOPE])
+                issuers={'firebase': endpoints.Issuer(
+        'https://securetoken.google.com/school-146605',
+        'https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com')})
+
 class SchoolManagementAPI(remote.Service):
 
     def _create_document(self,):
